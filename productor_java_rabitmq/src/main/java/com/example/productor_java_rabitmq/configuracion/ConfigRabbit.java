@@ -26,4 +26,20 @@ public class ConfigRabbit {
     public Queue colaOtraCiudad(){
         return new Queue(cola_otras_ciudad,false);
     }
+
+    //configurar método direct, fanaout, etc.
+    @Bean
+    public DirectExchange exchange(){
+        return new DirectExchange("exchange-estudiantes");
+    }
+
+    //configuracion de los bindigns
+    @Bean
+    public Binding bindingSantoDomingo(Queue colaSantoDomingo, DirectExchange exchange){
+        return BindingBuilder.bind(colaSantoDomingo).to(exchange).with(ROUTING_A);
+
+    }
+    
+
+
 }
