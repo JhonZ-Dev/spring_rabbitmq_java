@@ -8,5 +8,5 @@ import lombok.ToString;
 public class UsuarioModelo {
     private String nombre, apellido, identificacion, correo, ciudad_residencia,direccion;
     private String fecha_nacimiento;
-    
+
 }
