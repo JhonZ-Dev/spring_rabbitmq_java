@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 
 @Configuration
 public class ConfigRabbit {
@@ -44,8 +45,18 @@ public class ConfigRabbit {
         return BindingBuilder.bind(colaOtraCiudad).to(exchange).with(ROUTING_B);
 
     }
-    
 
+    @Bean
+    public Jackson2JsonMessageConverter jsonMessageConverter() {
+        return new Jackson2JsonMessageConverter();
+    }
+
+    @Bean
+    RabbitTemplate rabbitTemplate(ConnectionFactory factory){
+        RabbitTemplate rabbitTemplate = new RabbitTemplate(factory);
+        rabbitTemplate.setMessageConverter(jsonMessageConverter());
+        return rabbitTemplate;
+    }
 
 
 
