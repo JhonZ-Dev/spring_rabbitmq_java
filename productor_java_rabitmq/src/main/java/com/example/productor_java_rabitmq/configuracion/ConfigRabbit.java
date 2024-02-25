@@ -1,6 +1,11 @@
 package com.example.productor_java_rabitmq.configuracion;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 
 @Configuration
 public class ConfigRabbit {
@@ -11,4 +16,14 @@ public class ConfigRabbit {
     //segundo definir las rutas
     public static final String ROUTING_A="santo-domingo";
     public static final String ROUTING_B = "otra-ciudad";
+
+    //definir las colas
+    @Bean
+    public Queue colaSantoDomingo(){
+        return new Queue(cola_sd,false);
+    }
+    @Bean
+    public Queue colaOtraCiudad(){
+        return new Queue(cola_otras_ciudad,false);
+    }
 }
