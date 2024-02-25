@@ -39,7 +39,14 @@ public class ConfigRabbit {
         return BindingBuilder.bind(colaSantoDomingo).to(exchange).with(ROUTING_A);
 
     }
+    @Bean
+    public Binding bindingOtraCiudad(Queue colaOtraCiudad, DirectExchange exchange){
+        return BindingBuilder.bind(colaOtraCiudad).to(exchange).with(ROUTING_B);
+
+    }
     
+
+
 
 
 }
